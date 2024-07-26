@@ -1,0 +1,30 @@
+{
+  "name": "client2",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint"
+  },
+  "dependencies": {
+    "@reduxjs/toolkit": "^2.2.6",
+    "developer-icons": "^4.2.0",
+    "lucide-react": "^0.414.0",
+    "next": "14.2.5",
+    "next-themes": "^0.3.0",
+    "react": "^18",
+    "react-dom": "^18",
+    "react-hot-toast": "^2.4.1",
+    "react-redux": "^9.1.2",
+    "react-simple-code-editor": "^0.14.1",
+    "react-simple-editor": "^1.0.1",
+    "react-syntax-highlighter": "^15.5.0",
+    "react-tooltip": "^5.27.1"
+  },
+  "devDependencies": {
+    "postcss": "^8",
+    "tailwindcss": "^3.4.1"
+  }
+}
