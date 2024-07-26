@@ -18,7 +18,7 @@ const HomePage = () => {
 
   return (
     <div className="flex flex-wrap gap-4 justify-center lg:justify-start">
-      {data.length ? (
+      {data?.length ? (
         data?.map((v, k) => {
           return !v.isTrashed && <SingleNote key={v._id} data={v} />;
         })

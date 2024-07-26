@@ -8,13 +8,14 @@ import {
   useAddNoteMutation,
   useUpdateNoteMutation,
 } from "@/services/redux/api/snippet-api";
+import LoadingButton from "@/components/ui/loading-button";
 
 const SnippetEditor = ({ type, data, toggleStatus }) => {
   const [note, setNote] = useState(data);
   const router = useRouter();
 
-  const [addNote] = useAddNoteMutation();
-  const [updateNote] = useUpdateNoteMutation();
+  const [addNote, { isLoading: addLoading }] = useAddNoteMutation();
+  const [updateNote, { isLoading: updateLoading }] = useUpdateNoteMutation();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -36,12 +37,24 @@ const SnippetEditor = ({ type, data, toggleStatus }) => {
       <NoteTags setNote={setNote} data={note} />
       <NoteDescription setNote={setNote} data={note} />
       <NoteCodeEditor setNote={setNote} language={data?.language} data={data} />
-      <button
-        type="submit"
-        className="capitalize text-xl text-white bg-accent p-2 rounded-md w-full"
-      >
-        {type === "add" ? "Add +" : "Update"}
-      </button>
+      {type === "add" ? (
+        <LoadingButton
+          type={"submit"}
+          isLoading={addLoading}
+          className={"text-xl text-white bg-accent p-2 rounded-md w-full"}
+        >
+          {" "}
+          Add +
+        </LoadingButton>
+      ) : (
+        <LoadingButton
+          type={"submit"}
+          isLoading={updateLoading}
+          className={"text-xl text-white bg-accent p-2 rounded-md w-full"}
+        >
+          Update
+        </LoadingButton>
+      )}
     </form>
   );
 };

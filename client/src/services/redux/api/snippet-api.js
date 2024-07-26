@@ -27,6 +27,7 @@ const snippetApi = createApi({
       query: (id) => id,
       transformResponse,
       transformErrorResponse,
+      providesTags: ["notes"],
     }),
     addNote: builder.mutation({
       query: (data) => ({
@@ -36,7 +37,7 @@ const snippetApi = createApi({
       }),
       transformErrorResponse,
       transformResponse,
-      invalidatesTags: ["notes"],
+      invalidatesTags: ["notes", "tags"],
     }),
     updateNote: builder.mutation({
       query: ({ id, data }) => ({
@@ -44,7 +45,7 @@ const snippetApi = createApi({
         method: "POST",
         body: data,
       }),
-      invalidatesTags: ["notes"],
+      invalidatesTags: ["notes", "tags"],
       transformErrorResponse,
       transformResponse,
     }),

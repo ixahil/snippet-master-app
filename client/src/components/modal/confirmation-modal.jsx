@@ -1,8 +1,14 @@
 import { CheckIcon } from "lucide-react";
 import { Modal } from "./modal";
 import { Trash } from "lucide-react";
+import LoadingButton from "../ui/loading-button";
 
-function ConfirmationModal({ showModal, toggleModal, handleConfirm }) {
+function ConfirmationModal({
+  showModal,
+  toggleModal,
+  handleConfirm,
+  isLoading,
+}) {
   const handleCancel = () => {
     toggleModal();
   };
@@ -11,14 +17,15 @@ function ConfirmationModal({ showModal, toggleModal, handleConfirm }) {
       <div className="space-y-8 text-base w-[500px] h-full flex flex-col">
         <h4>{"Move to Trash?"}</h4>
         <div className="flex items-center gap-2">
-          <button
+          <LoadingButton
             className={
               "bg-red-500 border-2 border-red-500 text-white w-full flex items-center justify-center gap-2 p-2 rounded-md"
             }
             onClick={handleConfirm}
+            isLoading={isLoading}
           >
             Move to Trash <Trash />
-          </button>
+          </LoadingButton>
 
           <button
             className={

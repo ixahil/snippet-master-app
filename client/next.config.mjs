@@ -6,7 +6,7 @@ const nextConfig = {
         hostname: "localhost",
       },
       {
-        hostname: "api-ecommerce.sahildev.pro",
+        hostname: "api-snippet-master.sahildev.pro",
       },
     ],
   },

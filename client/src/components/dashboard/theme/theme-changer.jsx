@@ -23,7 +23,7 @@ const ThemeChanger = () => {
 
   return (
     <div
-      className="bg-slate-100 rounded-3xl flex items-center gap-2 cursor-pointer p-2 select-none"
+      className="bg-slate-100 rounded-3xl flex items-center gap-2 cursor-pointer p-2 select-none border-2"
       onClick={handleToggle}
     >
       <SunIcon

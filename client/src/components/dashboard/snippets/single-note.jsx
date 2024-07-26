@@ -1,35 +1,18 @@
 import ConfirmationModal from "@/components/modal/confirmation-modal";
-import { Modal } from "@/components/modal/modal";
 import { languagesIcons } from "@/data/icon-set";
 import useStatus from "@/hooks/useStatus";
 import {
   useMoveToTrashMutation,
   useUndoFromTrashMutation,
 } from "@/services/redux/api/snippet-api";
-import { JavaScriptIcon } from "developer-icons";
-import { Copy } from "lucide-react";
-import { Undo } from "lucide-react";
-import { Heart, Trash } from "lucide-react";
+import { Loader } from "lucide-react";
+import { Copy, Heart, Trash, Undo } from "lucide-react";
 import { useTheme } from "next-themes";
 import Link from "next/link";
-import { useState } from "react";
 import toast from "react-hot-toast";
-import { PrismLight } from "react-syntax-highlighter";
-import { darkula } from "react-syntax-highlighter/dist/cjs/styles/hljs";
-import { vsDark } from "react-syntax-highlighter/dist/cjs/styles/prism";
 import SyntaxHighlighter from "react-syntax-highlighter/dist/esm/default-highlight";
-import {
-  dark,
-  docco,
-  lightfair,
-  solarizedDark,
-} from "react-syntax-highlighter/dist/esm/styles/hljs";
-import {
-  materialDark,
-  materialLight,
-  oneDark,
-  solarizedlight,
-} from "react-syntax-highlighter/dist/esm/styles/prism";
+import { lightfair } from "react-syntax-highlighter/dist/esm/styles/hljs";
+import { oneDark } from "react-syntax-highlighter/dist/esm/styles/prism";
 import { Tooltip } from "react-tooltip";
 
 const SingleNote = ({ data }) => {
@@ -103,8 +86,8 @@ function NoteCodeBlock({ language, snippet }) {
     "background-color": resolvedTheme === "light" ? "#fff" : "#121212",
   };
 
-  const copyToClipboard = (code) => {
-    navigator.clipboard.writeText(code).then(
+  const copyToClipboard = () => {
+    navigator.clipboard.writeText(snippet).then(
       () => {
         toast.success("Code copied to clipboard!");
       },
@@ -140,8 +123,9 @@ function NoteCodeBlock({ language, snippet }) {
 
 function NoteFooter({ data }) {
   const { status, toggleStatus } = useStatus();
-  const [moveToTrash] = useMoveToTrashMutation(data._id);
-  const [undoFromTrash] = useUndoFromTrashMutation();
+  const [moveToTrash, { isLoading }] = useMoveToTrashMutation(data._id);
+  const [undoFromTrash, { isLoading: undoLoading }] =
+    useUndoFromTrashMutation();
 
   const handleConfirmTrash = async () => {
     await moveToTrash(data._id);
@@ -160,12 +144,15 @@ function NoteFooter({ data }) {
       </div>
       <Tooltip id="undo-tooltip" />
       {data.isTrashed ? (
-        <Undo
-          onClick={handleUndo}
-          className="cursor-pointer"
-          data-tooltip-id="undo-tooltip"
-          data-tooltip-content="Undo from Trash?"
-        />
+        <div className="flex gap-4 items-center">
+          {undoLoading && <Loader className="animate-spin" />}
+          <Undo
+            onClick={handleUndo}
+            className="cursor-pointer"
+            data-tooltip-id="undo-tooltip"
+            data-tooltip-content="Undo from Trash?"
+          />
+        </div>
       ) : (
         <Trash onClick={toggleStatus} className="cursor-pointer" />
       )}
@@ -173,6 +160,7 @@ function NoteFooter({ data }) {
         showModal={status}
         toggleModal={toggleStatus}
         handleConfirm={handleConfirmTrash}
+        isLoading={isLoading}
       />
     </div>
   );
