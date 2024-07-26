@@ -90,3 +90,5 @@ try {
 } catch (error) {
   console.log("MongoDB Error: " + error);
 }
+
+export default app;
