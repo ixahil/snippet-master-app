@@ -1,44 +1,54 @@
-# Ai Chat Application
+# Snippet Management Application
 
-Technologies utilized include **NextJS, ReactJS, NodeJS, ExpressJS, Redux, Redux API and Tailwind CSS**
+With our advanced tagging and search features, you can quickly find the snipped you need, right when you need it. Spend less time searching for code and more time writing it.
 
-### Frontend
+## Live Link
 
-**Next.js, React.js, Redux, Redux Api, Next Themes, React Simple Code Editor**
+Visit my live portfolio: [www.snippet-master.sahildev.pro/](https://snippet-master.sahildev.pro/)
 
-> [https://snippet-master.sahildev.pro/](https://snippet-master.sahildev.pro/)
 
-### Backend/Server
+## Tech Stack
 
-**Node, Express.js, authentication, Express Fileupload, Morgan, Mongoose**
-
-> [https://api-snippet-master.sahildev.pro/](https://api-snippet-master.sahildev.pro/)
+- **Client:** Next.js 14, React, TailwindCSS, Redux Toolkit, RTK Query
+- **Server:** Node.js, Express.js, MongoDB, RestAPI
 
 
 
-Live Demo: [Demo](https://snippet-master.sahildev.pro/)
+## Run Locally
+
+1. Server
+
+```bash
+  git clone https://github.com/ixahil/snippet-master-app
 
 
+  cd snippet-master-app/server
 
-## Run Local
 
-- Client:
+  pnpm install
 
-```js
-cd client
-
-npm install
-
-npm run dev
-```
-- Server:
-
-```js
-cd server
-
-pnpm install
-
-pnpm dev
+  ...Environments `PORT, DBURI, NODE_ENV`
+  
+  pnpm dev
 ```
 
-<> Developed and Managed by > [SahilDev.Pro](https://www.sahildev.pro/)
+2. Client
+
+```bash
+  git clone https://github.com/ixahil/snippet-master-app
+
+
+  cd snippet-master-app/client
+
+
+  npm run install
+
+  ...Environments `NEXT_PUBLIC_API`
+  
+  npm run dev
+```
+
+## Authors
+
+- [@ixahil](https://github.com/ixahil)
+
